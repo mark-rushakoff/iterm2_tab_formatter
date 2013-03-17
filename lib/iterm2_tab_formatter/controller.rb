@@ -7,15 +7,15 @@ module Iterm2TabFormatter
     end
 
     def apply_start_color
-      Iterm2Escape::Tab.set_color(*@colors[:suite_start])
+      Iterm2Escape::Tab.set_color(*@colors.fetch(:suite_start))
     end
 
     def apply_fail_color
-      Iterm2Escape::Tab.set_color(*@colors[:spec_fail])
+      Iterm2Escape::Tab.set_color(*@colors.fetch(:spec_fail))
     end
 
     def apply_pass_color
-      Iterm2Escape::Tab.set_color(*@colors[:suite_pass])
+      Iterm2Escape::Tab.set_color(*@colors.fetch(:suite_pass))
     end
   end
 end

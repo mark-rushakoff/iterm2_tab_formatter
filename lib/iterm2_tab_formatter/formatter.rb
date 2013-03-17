@@ -18,5 +18,12 @@ module Iterm2TabFormatter
       super
       controller.apply_fail_color
     end
+
+    def example_started(example)
+      super
+
+      controller.window_title = example.description
+      controller.tab_title = "#{examples.size - 1}/#{example_count}"
+    end
   end
 end

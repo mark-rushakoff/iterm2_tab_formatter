@@ -17,5 +17,13 @@ module Iterm2TabFormatter
     def apply_pass_color
       Iterm2Escape::Tab.set_color(*@colors.fetch(:suite_pass))
     end
+
+    def tab_title=(title)
+      Iterm2Escape::Tab.title = title
+    end
+
+    def window_title=(title)
+      Iterm2Escape::Tab.window_title = title
+    end
   end
 end

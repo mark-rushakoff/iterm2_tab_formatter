@@ -28,4 +28,17 @@ describe Iterm2TabFormatter::Controller do
       controller.apply_pass_color
     end
   end
+  describe 'titles' do
+    let(:controller) { described_class.new({}) }
+
+    it 'sets the tab title' do
+      Iterm2Escape::Tab.should_receive('title=').with('foo bar')
+      controller.tab_title = 'foo bar'
+    end
+
+    it 'sets the window title' do
+      Iterm2Escape::Tab.should_receive('window_title=').with('foo bar')
+      controller.window_title = 'foo bar'
+    end
+  end
 end

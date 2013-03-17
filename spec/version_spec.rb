@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'iterm2_tab_formatter'
 
 describe Iterm2TabFormatter do
   it "has a version" do

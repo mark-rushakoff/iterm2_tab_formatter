@@ -31,4 +31,8 @@ class Iterm2TabFormatter
     controller.window_title = example.description
     controller.tab_title = "#{examples.size - 1}/#{example_count}"
   end
+
+  def dump_summary(duration, example_count, failure_count, pending_count)
+    controller.apply_pass_color if failure_count == 0 && example_count > 0
+  end
 end

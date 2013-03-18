@@ -40,6 +40,8 @@ class Iterm2TabFormatter
     controller.tab_title = "#{pass_ratio * 100}% passed"
 
     window_title = Iterm2TabFormatter::TextFormatter.window_title(8, 1, 2)
+    window_title << ' - '
+    window_title << Iterm2TabFormatter::TextFormatter.duration(duration)
     window_title << ' - Finished at '
     window_title << Iterm2TabFormatter::TextFormatter.finished_at(Time.now)
     controller.window_title = window_title

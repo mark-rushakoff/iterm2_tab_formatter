@@ -19,6 +19,17 @@ class Iterm2TabFormatter
       def finished_at(time)
         time.iso8601
       end
+
+      def duration(seconds)
+        text_minutes = (seconds / 60).to_i
+        text_seconds = (seconds % 60)
+
+        text = ''
+        text << "#{text_minutes}m" if text_minutes > 0
+        text << ("%.1fs" % text_seconds)
+
+        text
+      end
     end
   end
 end

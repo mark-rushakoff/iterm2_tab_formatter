@@ -25,4 +25,13 @@ describe Iterm2TabFormatter::TextFormatter do
       expect(described_class.finished_at(date)).to eq('2013-03-17T19:25:00-07:00')
     end
   end
+
+  describe '.duration' do
+    it 'correctly prints the time under a minute' do
+      expect(described_class.duration(1.1)).to eq('1.1s')
+    end
+    it 'correctly prints time over a minute' do
+      expect(described_class.duration(65)).to eq('1m5.0s')
+    end
+  end
 end

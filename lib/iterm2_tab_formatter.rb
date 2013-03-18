@@ -37,5 +37,12 @@ class Iterm2TabFormatter
 
     pass_ratio = 1 - (1.0 * failure_count / example_count)
     controller.tab_title = "#{pass_ratio * 100}% passed"
+
+    window_title = "#{example_count} example"
+    window_title << 's' unless example_count == 1
+    window_title << ", #{failure_count} failure" if failure_count > 0
+    window_title << 's' if failure_count > 1
+    window_title << ", #{pending_count} pending" if pending_count > 0
+    controller.window_title = window_title
   end
 end

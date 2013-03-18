@@ -25,6 +25,7 @@ describe Iterm2TabFormatter do
     before do
       controller.stub(:apply_pass_color)
       controller.stub(:tab_title=)
+      controller.stub(:window_title=)
     end
 
     describe 'color' do
@@ -52,6 +53,25 @@ describe Iterm2TabFormatter do
         controller.should_receive(:tab_title=).with('87.5% passed')
 
         formatter.dump_summary(1, 8, 1, 2)
+      end
+
+      describe 'the window title' do
+        ({
+          '1 example' => [1, 0, 0],
+          '3 examples' => [3, 0, 0],
+          '3 examples, 2 failures' => [3, 2, 0],
+          '8 examples, 1 failure, 2 pending' => [8, 1, 2],
+          '8 examples, 2 failures, 1 pending' => [8, 2, 1],
+          '8 examples, 1 pending' => [8, 0, 1],
+          '8 examples, 2 pending' => [8, 0, 2],
+        }).each do |expected_message, counts|
+          example_count, failure_count, pending_count = counts
+
+          it "is correct for #{example_count}/#{failure_count}/#{pending_count}" do
+            controller.should_receive(:window_title=).with(expected_message)
+            formatter.dump_summary(1, example_count, failure_count, pending_count)
+          end
+        end
       end
     end
   end

@@ -1,6 +1,7 @@
 require 'iterm2_tab_formatter/base'
 require "iterm2_tab_formatter/version"
 require "iterm2_tab_formatter/controller"
+require "iterm2_tab_formatter/text_formatter"
 
 class Iterm2TabFormatter
   attr_reader :controller
@@ -38,6 +39,9 @@ class Iterm2TabFormatter
     pass_ratio = 1 - (1.0 * failure_count / example_count)
     controller.tab_title = "#{pass_ratio * 100}% passed"
 
-    controller.window_title = Iterm2TabFormatter::TextFormatter.window_title(8, 1, 2)
+    window_title = Iterm2TabFormatter::TextFormatter.window_title(8, 1, 2)
+    window_title << ' - Finished at '
+    window_title << Iterm2TabFormatter::TextFormatter.finished_at(Time.now)
+    controller.window_title = window_title
   end
 end

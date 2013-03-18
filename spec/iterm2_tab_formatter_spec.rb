@@ -56,8 +56,10 @@ describe Iterm2TabFormatter do
       end
 
       it 'sets the window title through TextFormatter' do
-        Iterm2TabFormatter::TextFormatter.should_receive(:window_title).with(8, 1, 2).and_return('win title')
-        controller.should_receive(:window_title=).with('win title')
+        Time.should_receive(:now).and_return('time_now')
+        Iterm2TabFormatter::TextFormatter.should_receive(:window_title).with(8, 1, 2).and_return('window title')
+        Iterm2TabFormatter::TextFormatter.should_receive(:finished_at).with('time_now').and_return('finish_time')
+        controller.should_receive(:window_title=).with('window title - Finished at finish_time')
 
         formatter.dump_summary(1, 8, 1, 2)
       end

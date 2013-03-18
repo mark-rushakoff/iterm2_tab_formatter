@@ -1,4 +1,5 @@
 require 'iterm2_tab_formatter/base'
+require 'time'
 
 class Iterm2TabFormatter
   module TextFormatter
@@ -13,6 +14,10 @@ class Iterm2TabFormatter
         window_title << ", #{pending_count} pending" if pending_count > 0
 
         window_title
+      end
+
+      def finished_at(time)
+        time.iso8601
       end
     end
   end

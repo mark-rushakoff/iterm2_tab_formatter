@@ -18,4 +18,11 @@ describe Iterm2TabFormatter::TextFormatter do
       end
     end
   end
+
+  describe '.finished_at' do
+    it 'formats as ISO-8601 datetime' do
+      date = DateTime.new(2013, 3, 17, 19, 25, 0, '-7')
+      expect(described_class.finished_at(date)).to eq('2013-03-17T19:25:00-07:00')
+    end
+  end
 end

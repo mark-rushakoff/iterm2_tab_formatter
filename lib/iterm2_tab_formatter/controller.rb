@@ -1,6 +1,7 @@
+require 'iterm2_tab_formatter/base'
 require 'iterm2_escape'
 
-module Iterm2TabFormatter
+class Iterm2TabFormatter
   class Controller
     def initialize(colors)
       @colors = colors

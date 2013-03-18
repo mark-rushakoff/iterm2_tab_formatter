@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'iterm2_tab_formatter/formatter'
+require 'iterm2_tab_formatter'
 
-describe Iterm2TabFormatter::Formatter do
+describe Iterm2TabFormatter do
   let(:formatter) { described_class.new(nil) }
   let(:controller) { formatter.controller }
   it 'makes a controller when initialized' do

@@ -13,8 +13,10 @@ By default, here's what it does:
   * Green if all the specs pass
 * Tab title:
   * Index of current spec and total number of specs
+  * Percentage of specs that passed, after specs finish
 * Window title:
   * Full spec name for the current spec
+  * Summary, duration, and finish time after specs finish
 
 (iterm2_tab_formatter is in no way affiliated with [iTerm2](https://github.com/gnachman/iTerm2) -- it was just made by a fan.)
 

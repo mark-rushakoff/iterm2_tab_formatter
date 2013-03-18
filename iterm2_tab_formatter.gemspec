@@ -29,5 +29,5 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_runtime_dependency 'iterm2_escape', '~> 1.0'
-  gem.add_development_dependency 'rspec', '~> 2.13'
+  gem.add_runtime_dependency 'rspec', '~> 2.13'
 end

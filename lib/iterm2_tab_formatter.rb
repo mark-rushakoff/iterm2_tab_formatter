@@ -10,7 +10,7 @@ class Iterm2TabFormatter
     colors = {
       suite_start: [128, 128, 128],
       spec_fail: [255, 0, 0],
-      suite_pass: [0, 0, 255]
+      suite_pass: [0, 255, 0]
     }
     @controller = Iterm2TabFormatter::Controller.new(colors)
   end
@@ -35,7 +35,7 @@ class Iterm2TabFormatter
   def dump_summary(duration, example_count, failure_count, pending_count)
     controller.apply_pass_color if failure_count == 0 && example_count > 0
 
-    pass_count = example_count - failure_count - pending_count
-    controller.tab_title = "#{pass_count}.#{failure_count}F#{pending_count}?"
+    pass_ratio = 1 - (1.0 * failure_count / example_count)
+    controller.tab_title = "#{pass_ratio * 100}% passed"
   end
 end

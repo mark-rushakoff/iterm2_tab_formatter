@@ -49,9 +49,9 @@ describe Iterm2TabFormatter do
 
     describe 'text' do
       it 'sets the tab title to a summary of the specs' do
-        controller.should_receive(:tab_title=).with('4.1F2?')
+        controller.should_receive(:tab_title=).with('87.5% passed')
 
-        formatter.dump_summary(1, 7, 1, 2)
+        formatter.dump_summary(1, 8, 1, 2)
       end
     end
   end

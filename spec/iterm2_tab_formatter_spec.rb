@@ -55,23 +55,11 @@ describe Iterm2TabFormatter do
         formatter.dump_summary(1, 8, 1, 2)
       end
 
-      describe 'the window title' do
-        ({
-          '1 example' => [1, 0, 0],
-          '3 examples' => [3, 0, 0],
-          '3 examples, 2 failures' => [3, 2, 0],
-          '8 examples, 1 failure, 2 pending' => [8, 1, 2],
-          '8 examples, 2 failures, 1 pending' => [8, 2, 1],
-          '8 examples, 1 pending' => [8, 0, 1],
-          '8 examples, 2 pending' => [8, 0, 2],
-        }).each do |expected_message, counts|
-          example_count, failure_count, pending_count = counts
+      it 'sets the window title through TextFormatter' do
+        Iterm2TabFormatter::TextFormatter.should_receive(:window_title).with(8, 1, 2).and_return('win title')
+        controller.should_receive(:window_title=).with('win title')
 
-          it "is correct for #{example_count}/#{failure_count}/#{pending_count}" do
-            controller.should_receive(:window_title=).with(expected_message)
-            formatter.dump_summary(1, example_count, failure_count, pending_count)
-          end
-        end
+        formatter.dump_summary(1, 8, 1, 2)
       end
     end
   end

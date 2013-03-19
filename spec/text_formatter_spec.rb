@@ -34,4 +34,14 @@ describe Iterm2TabFormatter::TextFormatter do
       expect(described_class.duration(65)).to eq('1m5.0s')
     end
   end
+
+  describe '.status' do
+    it 'is "PASS" when there are 0 failures' do
+      expect(described_class.status(0)).to eq('PASS')
+    end
+
+    it 'is "FAIL" when there are >0 failures' do
+      expect(described_class.status(1)).to eq('FAIL')
+    end
+  end
 end

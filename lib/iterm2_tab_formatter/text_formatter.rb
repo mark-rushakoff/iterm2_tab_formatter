@@ -30,6 +30,10 @@ class Iterm2TabFormatter
 
         text
       end
+
+      def status(failure_count)
+        failure_count == 0 ? 'PASS' : 'FAIL'
+      end
     end
   end
 end

@@ -36,7 +36,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Just add the following line to your spec_helper.rb file:
+
+    require 'iterm2_tab_formatter/auto'
+
+And then your iTerm2 tabs will participate in testing too!
 
 ## Contributing
 

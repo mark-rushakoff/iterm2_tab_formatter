@@ -5,5 +5,5 @@ rescue LoadError
 end
 
 class Iterm2TabFormatter
-  VERSION = "0.7.2"
+  VERSION = "0.7.3"
 end

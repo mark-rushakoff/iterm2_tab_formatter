@@ -56,11 +56,21 @@ describe Iterm2TabFormatter do
       end
 
       it 'sets the window title through TextFormatter' do
-        Time.should_receive(:now).and_return('time_now')
-        Iterm2TabFormatter::TextFormatter.should_receive(:status).with(3).and_return('PASS_OR_FAIL')
-        Iterm2TabFormatter::TextFormatter.should_receive(:duration).with(5).and_return('the_duration')
-        Iterm2TabFormatter::TextFormatter.should_receive(:window_title).with(10, 3, 4).and_return('window_title')
-        Iterm2TabFormatter::TextFormatter.should_receive(:finished_at).with('time_now').and_return('finish_time')
+        now = Time.now
+        Time.should_receive(:now).and_return(now)
+        Iterm2TabFormatter::TextFormatter.should_receive(:new).with(
+          duration_seconds: 5,
+          example_count: 10,
+          failure_count: 3,
+          pending_count: 4,
+          finish_time: now
+        ).and_return(double(
+          status: 'PASS_OR_FAIL',
+          duration: 'the_duration',
+          window_title: 'window_title',
+          finished_at: 'finish_time'
+        ))
+
         controller.should_receive(:window_title=).with('PASS_OR_FAIL - window_title - the_duration - Finished at finish_time')
 
         formatter.dump_summary(5, 10, 3, 4)

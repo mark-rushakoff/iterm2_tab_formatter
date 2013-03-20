@@ -39,13 +39,21 @@ class Iterm2TabFormatter
     pass_ratio = 1 - (1.0 * failure_count / example_count)
     controller.tab_title = "#{pass_ratio * 100}% passed"
 
-    window_title = Iterm2TabFormatter::TextFormatter.status(failure_count)
+    formatter = Iterm2TabFormatter::TextFormatter.new(
+      duration_seconds: duration,
+      example_count: example_count,
+      failure_count: failure_count,
+      pending_count: pending_count,
+      finish_time: Time.now
+    )
+
+    window_title = formatter.status
     window_title << ' - '
-    window_title << Iterm2TabFormatter::TextFormatter.window_title(example_count, failure_count, pending_count)
+    window_title << formatter.window_title
     window_title << ' - '
-    window_title << Iterm2TabFormatter::TextFormatter.duration(duration)
+    window_title << formatter.duration
     window_title << ' - Finished at '
-    window_title << Iterm2TabFormatter::TextFormatter.finished_at(Time.now)
+    window_title << formatter.finished_at
     controller.window_title = window_title
   end
 end

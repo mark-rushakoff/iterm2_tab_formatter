@@ -21,6 +21,16 @@ describe Iterm2TabFormatter do
     formatter.example_failed(double)
   end
 
+  it 'sets the window title to the description of a spec' do
+    example = double("example", description: 'an example description')
+
+    controller.should_receive(:window_title=).with('an example description')
+    controller.should_receive(:tab_title=).with('0/100')
+
+    formatter.stub(example_count: 100)
+    formatter.example_started(example)
+  end
+
   describe 'at the end of the suite' do
     before do
       controller.stub(:apply_pass_color)
@@ -76,15 +86,5 @@ describe Iterm2TabFormatter do
         formatter.dump_summary(5, 10, 3, 4)
       end
     end
-  end
-
-  it 'sets the window title to the description of a spec' do
-    example = double("example", description: 'an example description')
-
-    controller.should_receive(:window_title=).with('an example description')
-    controller.should_receive(:tab_title=).with('0/100')
-
-    formatter.stub(example_count: 100)
-    formatter.example_started(example)
   end
 end

@@ -42,6 +42,17 @@ Just add the following line to your spec_helper.rb file:
 
 And then your iTerm2 tabs will participate in testing too!
 
+If you want to customize your colors:
+
+  RSpec.configure do |c|
+    # ugly monochrome
+    c.it2tf_neutral = '#7F7F7F' # gray
+    c.it2tf_pass = '#FFFFFF' # white
+    c.it2tf_fail = '#000000' # black
+  end
+
+  require 'iterm2_tab_formatter/autoload' # must be after configuration
+
 ## Contributing
 
 1. Fork it

@@ -1,7 +1,9 @@
 require 'iterm2_tab_formatter/base'
-require "iterm2_tab_formatter/version"
-require "iterm2_tab_formatter/controller"
-require "iterm2_tab_formatter/text_formatter"
+require 'iterm2_tab_formatter/version'
+require 'iterm2_tab_formatter/controller'
+require 'iterm2_tab_formatter/text_formatter'
+require 'iterm2_tab_formatter/color_parse'
+require 'iterm2_tab_formatter/rspec_configuration'
 
 class Iterm2TabFormatter
   attr_reader :controller
@@ -9,9 +11,9 @@ class Iterm2TabFormatter
   def initialize(output)
     super
     colors = {
-      suite_start: [128, 128, 128],
-      spec_fail: [255, 0, 0],
-      suite_pass: [0, 255, 0]
+      suite_start: color(:it2tf_neutral),
+      spec_fail: color(:it2tf_fail),
+      suite_pass: color(:it2tf_pass)
     }
     @controller = Iterm2TabFormatter::Controller.new(colors)
   end
@@ -55,5 +57,10 @@ class Iterm2TabFormatter
     window_title << ' - Finished at '
     window_title << formatter.finished_at
     controller.window_title = window_title
+  end
+
+  private
+  def color(name)
+    Iterm2TabFormatter::color_parse(RSpec.configuration.__send__(name))
   end
 end

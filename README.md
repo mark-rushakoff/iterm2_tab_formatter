@@ -38,7 +38,7 @@ Or install it yourself as:
 
 Just add the following line to your spec_helper.rb file:
 
-    require 'iterm2_tab_formatter/auto'
+    require 'iterm2_tab_formatter/autoload'
 
 And then your iTerm2 tabs will participate in testing too!
 

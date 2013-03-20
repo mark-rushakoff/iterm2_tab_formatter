@@ -1,5 +1,5 @@
 require 'rspec'
-require 'iterm2_tab_formatter/auto'
+require 'iterm2_tab_formatter/autoload'
 
 RSpec.configure do |c|
   c.add_formatter('documentation')
